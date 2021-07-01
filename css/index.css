@@ -1,0 +1,692 @@
+/*主页index.html的样式表*/
+
+/* 顶部导航条的容器*/
+.topbar-wrapper {
+    /* 设置宽度全屏*/
+    width: 100%;
+    height: 40px;
+    /* 设置行高 */
+    line-height: 40px;
+    background-color: #333;
+}
+
+/* 设置topbar里所有超链接的颜色*/
+.topbar a {
+    font-size: 12px;
+    color: #b0b0b0;
+    /* 把a设置成块元素，这样a的上下范围内都可以点击了*/
+    display: block;
+}
+
+/* 设置鼠标移入超链接时的效果*/
+.topbar a:hover {
+    color: #fff;
+}
+
+/* 设置超链接之间的分割线效果*/
+.topbar .line {
+    font-size: 12px;
+    color: #424242;
+    margin: 0 8px;
+}
+
+/* 设置左侧导航栏，导航栏整体向左浮动，同时topbar下的所有li也要向左浮动*/
+.service, .topbar li {
+    float: left;
+}
+
+/* 给小三角的父类开启相对定位*/
+.app {
+    position: relative;
+}
+
+/* 设置APP下的小三角*/
+.app::after {
+    display: none;
+    content: '';
+    /* 开启绝对定位 */
+    position: absolute;
+    width: 0;
+    height: 0;
+    /* 设置四个方向的边框*/
+    border: 8px solid transparent;
+    /* 去除上边框*/
+    border-top: none;
+    /* 给下边框设置颜色*/
+    border-bottom-color: #fff;
+    bottom: 0;
+    /*!* left和right都写死为0只会，浏览器会自动调整margin以达到居中效果*!*/
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+/* 设置鼠标移入时显示小三角图标&二维码弹出效果*/
+.app:hover .qrcode,
+.app:hover::after {
+    display: block;
+    /* 把高度设回148px*/
+    height: 148px;
+}
+
+/* 设置下载APP的下拉*/
+.app .qrcode {
+    /*display: none;*/
+
+    /* 开启绝对定位，不在父元素里占据位置*/
+    position: absolute;
+    z-index: 9999;
+
+    left: -40px;
+    width: 128px;
+    /*height: 148px;*/
+    /* 能添加动画效果的隐藏方式*/
+    height: 0;
+    overflow: hidden;
+
+    /* transition：用于为样式设置过度效果*/
+    transition: height 0.3s;
+
+    /* "小米商城APP"是span，继承了祖先元素topbar-wrapper的行高40，所以要重新设置一下*/
+    line-height: 1;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+}
+
+/* 设置二维码图片 */
+.app .qrcode img {
+    width: 90px;
+    margin: 17px;
+    margin-bottom: 10px;
+}
+
+/* 设置二维码图片下的文字 */
+.app .qrcode span {
+    font-size: 14px;
+    color: #000;
+}
+
+/* 设置右侧的用户登录注册信息和购物车向右浮动*/
+.shopping-cart, .user-info {
+    float: right;
+}
+
+/* 设置购物车*/
+.shopping-cart {
+    margin-left: 25px;
+}
+
+/* 设置购物车的样式 */
+.shopping-cart a {
+    position: relative;
+    width: 120px;
+    background-color: #424242;
+    /* 让文字居中 */
+    text-align: center;
+}
+
+/* 设置鼠标移入a时字体变色*/
+.shopping-cart a:hover {
+    background-color: #fff;
+    color: #ff6700;
+}
+
+/* 设置鼠标移入以及下滑到下拉区时弹出层都能显示*/
+.shopping-cart:hover .shopping-cart-content{
+    height: 100px;
+}
+
+
+/* 设置购物车小图标的位置*/
+.shopping-cart i {
+    margin-right: 2px;
+}
+
+/* 设置购物车弹出内容区*/
+.shopping-cart-content {
+    position: absolute;
+    z-index: 9999;
+    left: -230px;
+    width: 350px;
+    /*height: 100 px;*/
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s;
+    text-align: center;
+    background-color: #fff;
+    /* 把阴影往下挪一点 */
+    box-shadow: 0 5px 3px rgba(0, 0, 0, .1);
+}
+
+/* 设置购物车弹出内容区的文字*/
+.shopping-cart-content div {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #000;
+}
+
+/* 设置header wrapper*/
+.header-wrapper {
+    /* 给wrapper开定位，然后弹出层goods-info可以参考wrapper定位*/
+    position: relative;
+}
+
+/* 设置中间的header */
+.header {
+    height: 100px;
+}
+
+/* 设置logo外框h1的样式*/
+.header .logo {
+    /* 作为父元素开启定位*/
+    position: relative;
+    float: left;
+    margin-top: 22px;
+    width: 55px;
+    height: 55px;
+    /* 裁剪掉溢出元素，这样home logo就被隐藏了*/
+    overflow: hidden;
+    /* 隐藏文字"小米官网" */
+    text-indent: -9999px;
+}
+
+/* 设置超链接home和mi的统一样式 */
+.header .logo a {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    /* 当前文件在css目录下，要先退回根目录再找到图片*/
+    background-image: url(../img/mi-logo.png);
+    /* 让图片位置居中 */
+    background-position: center;
+    background-color: #ff6700;
+    /* 设置渐变效果，指定left的初始位置*/
+    left: 0;
+    transition: left 0.3s;
+}
+
+/* 修改一下home logo的样式 */
+.header .logo .home {
+    left: -55px;
+    background-image: url(../img/mi-home.png);
+    /* 设置渐变效果*/
+    transition: left 0.3s;
+}
+
+/* 给mi标签加入鼠标移入时向右滑动隐藏的效果*/
+.header .logo:hover .mi {
+    left: 55px;
+}
+
+/* 给home标签加入鼠标移入时向右滑动出现的效果*/
+.header .logo:hover .home {
+    left: 0;
+}
+
+/* 设置中间的导航条*/
+.header .nav-wrapper {
+    float: left;
+    /* 和logo之间有间隙 */
+    margin-left: 7px;
+}
+
+/* 设置导航条ul*/
+.header .nav {
+    height: 100px;
+    /* 内容居中 */
+    line-height: 100px;
+    /* 内部文字往右移动，使用padding而不是margin，否则整块区域都会往右移*/
+    padding-left: 58px;
+}
+
+/* 设置只让ul中的子元素li浮动，后代元素（左侧导航栏菜单的）li不浮动*/
+.nav > li {
+    float: left;
+}
+
+/* 左侧导航条的父元素*/
+.all-goods-wrapper {
+    position: relative;
+}
+
+/* 设置左侧导航条的样式*/
+.left-menu {
+    position: absolute;
+    /* 优先级小于上方的下拉菜单*/
+    z-index: 999;
+    left: -120px;
+    width: 234px;
+    height: 420px;
+    padding: 20px 0;
+    /*line-height: 1;*/
+    background-color: rgba(0, 0, 0, .6);
+}
+
+/* 设置左侧导航栏里的超链接
+    通过增加选择用词来提高优先级，覆盖掉继承来的样式
+*/
+ul .left-menu li a {
+    display: block;
+    height: 42px;
+    line-height: 42px;
+    color: #fff;
+    /* 把继承来的margin-right去掉*/
+    margin-right: 0;
+    /* 将超链接内容往里挤*/
+    padding: 0 30px;
+    font-size: 14px;
+}
+
+ul .left-menu li a:hover {
+    color: #fff;
+    background-color: #ff6700;
+}
+
+/* 设置左侧导航栏里的小尖头*/
+.left-menu a i {
+    float: right;
+    /* 垂直方向对不齐，设置一下行高*/
+    line-height: 42px;
+}
+
+/* 设置导航条lu中的li中的a*/
+.nav-wrapper li a {
+    /* 转换成块元素，a的可点击范围就会变大*/
+    display: block;
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+/* 设置鼠标移入a时的颜色变化*/
+.nav-wrapper li a:hover {
+    color: #ff6700;
+}
+
+/* 隐藏全部商品 */
+.all-goods {
+    /* 隐藏但依然占据位置，不能使用display:none，否则右边的内容会往左来占据all-goods原本的位置*/
+    visibility: hidden;
+}
+
+/* 设置下拉层，写在hover前面，因为两个都是.nav .goods-info，写后面的会覆盖前面的*/
+.nav .goods-info {
+    /* width参照离它最近且开启了定位的祖先元素header wrapper的宽度*/
+    width: 100%;
+    /* 隐藏元素*/
+    overflow: hidden;
+    height: 0;
+    transition: height 0.3s;
+    /*border-top: 1px solid rgb(224, 224, 224);*/
+    /*box-shadow: 0 5px 3px rgba(0, 0, 0, .2);*/
+    position: absolute;
+    top: 100px;
+    left: 0;
+    z-index: 9999;
+}
+
+/* 设置鼠标移入class为show-goods的li时显示下拉层，用兄弟选择器，以及鼠标位于下拉层内部时依旧显示*/
+.nav .show-goods:hover ~ .goods-info,
+.goods-info:hover {
+    height: 228px;
+    background-color: #fff;
+    border-top: 1px solid rgb(224, 224, 224);
+    box-shadow: 0 5px 3px rgba(0, 0, 0, .2);
+}
+
+/* 设置搜索框的容器 */
+.search-wrapper {
+    /* 作为父元素开启定位 */
+    position: relative;
+    width: 296px;
+    height: 50px;
+    float: right;
+    margin-top: 25px;
+}
+
+/* 设置搜索框样式*/
+.search-wrapper .search-inp {
+    float: left;
+    height: 50px;
+    width: 244px;
+    box-sizing: border-box;
+    /* 左右加10px padding，这样输入文字时候就不顶头了*/
+    padding: 0 10px;
+    font-size: 16px;
+    border: 1px solid rgb(224, 224, 224);
+    /* 去掉input自带的边框 */
+    outline: none;
+}
+
+/* 设置搜索框获得鼠标焦点后的样式*/
+.search-wrapper .search-inp:focus,
+.search-wrapper .search-inp:focus + button {
+    border-color: #ff6700;
+}
+
+/* 设置搜索按钮样式*/
+.search-wrapper .search-btn {
+    float: left;
+    height: 50px;
+    width: 52px;
+    /* 去掉input自带的padding和border*/
+    padding: 0;
+    border: 1px solid rgb(224, 224, 224);
+    border-left: none;
+
+    background-color: #fff;
+    color: #616161;
+    font-size: 16px;
+}
+
+/* 设置搜索按钮鼠标移入时变化*/
+.search-wrapper .search-btn:hover {
+    background-color: #ff6700;
+    color: #fff;
+    border: none;
+}
+
+/* 设置搜索框内默认文字*/
+.search-wrapper .Redmi {
+    position: absolute;
+    float: left;
+    background-color: #eee;
+    width: 105px;
+    height: 20px;
+    left: 80px;
+    top: 18px;
+    text-align: center;
+    font-size: 14px;
+    color: #757588;
+}
+
+/* 设置搜索框内默认文字*/
+.search-wrapper .mi9 {
+    position: absolute;
+    float: left;
+    background-color: #eee;
+    width: 40px;
+    height: 20px;
+    left: 192px;
+    top: 18px;
+    text-align: center;
+    font-size: 14px;
+    color: #757588;
+}
+
+/* 设置默认文字的鼠标移入效果*/
+.search-wrapper .Redmi:hover,
+.search-wrapper .mi9:hover {
+    background-color: #ff6700;
+    color: #fff;
+}
+
+/* 给父类包含块开相对定位*/
+.banner {
+    position: relative;
+    height: 460px;
+}
+
+/* 给图片li开启定位*/
+.banner .img-list li {
+    position: absolute;
+}
+
+/* 设置banner里的图片 */
+.banner img {
+    width: 100%;
+    /* 去除图片之间的边距 */
+    vertical-align: top;
+}
+
+/* 设置五个导航点*/
+.pointer {
+    position: absolute;
+    bottom: 22px;
+    right: 35px;
+}
+
+/* 设置五个导航点样式*/
+.pointer a {
+    float: left;
+    width: 6px;
+    height: 6px;
+    border: 2px solid rgba(255, 255, 255, .4);
+    /* 变成圆形*/
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, .2);
+    margin-left: 6px;
+}
+
+/* 设置五个导航点鼠标移入时的效果，以及默认点中第一个点*/
+.pointer a:hover,
+.pointer a.active{
+    border: 2px solid rgba(0, 0, 0, .2);
+    background-color: rgba(255, 255, 255, .4);
+}
+
+/* 设置图片上左右两个箭头 */
+.prev-next a{
+    width: 41px;
+    height: 69px;
+    background-image: url(../img/icon-slides.png);
+    position: absolute;
+    /* 让两个箭头都垂直居中*/
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+}
+
+/* 设置左边箭头*/
+.prev-next .prev{
+    left: 234px;
+    background-position: -84px 0;
+}
+
+/* 设置左边箭头鼠标移入状态*/
+.prev-next .prev:hover{
+    background-position: 0 0;
+}
+
+/* 设置右边箭头*/
+.prev-next .next{
+    right: 0;
+    background-position: -125px 0;
+}
+
+/* 设置右边箭头鼠标移入状态*/
+.prev-next .next:hover{
+    background-position: -42px 0;
+}
+
+/* 设置右侧工具栏 */
+.back-top{
+    width: 26px;
+    height: 206px;
+    background-color: #fff;
+    /* 开启固定定位 */
+    position: fixed;
+    bottom: 60px;
+    /*
+        布局的等式：
+       left + margin-left + width + margin-right + right = 视口宽度
+       auto      0           26          0          50%
+     */
+    right: 50%;
+    margin-right: -639px;
+}
+
+.tool-list{
+    position: relative;
+}
+
+.tool-list li{
+    border: 1px solid #f5f5f5;
+    margin:0 -1px -1px 0;
+}
+
+.tool-list li a{
+    display: block;
+    margin-left: 5px;
+    color: #9a9a9a;
+    line-height: 40px;
+}
+
+.tool-list li a:hover{
+    color: #ff6700;
+}
+
+/* 设置弹出层新人扫码注册二维码*/
+.tool-list .saoma{
+    /* 开启绝对定位，不在父元素里占据位置*/
+    display: none;
+    position: absolute;
+    z-index: 9999;
+
+    left: -138px;
+    top: 0;
+    width: 128px;
+    height: 168px;
+
+    /* transition：用于为样式设置过度效果*/
+    transition: left 0.3s;
+
+    line-height: 1;
+    text-align: center;
+    background-color: #fff;
+}
+
+/* 设置二维码图片 */
+.tool-list .saoma img {
+    width: 90px;
+    margin: 17px;
+    margin-bottom: 10px;
+}
+
+/* 设置二维码图片下的文字 */
+.tool-list .saoma span {
+    font-size: 14px;
+    color: #000;
+}
+
+/* 设置二维码右边的小三角*/
+.tool-list .app-download::after {
+    display: none;
+    content: '';
+    /* 开启绝对定位 */
+    position: absolute;
+    width: 0;
+    height: 0;
+    /* 设置四个方向的边框*/
+    border: 8px solid transparent;
+    /* 去除右边框*/
+    border-right: 0;
+    /* 给左边框设置颜色*/
+    border-left-color: #fff;
+    /*!* left和right都写死为0只会，浏览器会自动调整margin以达到居中效果*!*/
+    left:-10px;
+    top:12px;
+}
+
+/* 设置鼠标移入时二维码出现效果*/
+.tool-list .app-download:hover .saoma,
+.tool-list .app-download:hover::after{
+    display: block;
+}
+
+/* 设置下部的广告区*/
+.ad{
+    height: 170px;
+    margin-top:14px;
+}
+
+/* 设置所有元素浮动*/
+.ad .shortcut,
+.ad .imgs,
+.ad li{
+    float: left;
+}
+
+/* 设置左侧快捷方式的框*/
+.ad .shortcut{
+    width: 228px;
+    height: 168px;
+    background-color: #5f5750;
+    margin-right: 14px;
+    padding-top: 2px;
+    padding-left: 6px;
+}
+
+/* 给每个li开启定位，这样每个li before都相对它自己的li定位*/
+.ad .shortcut li{
+    position: relative;
+}
+
+/* 设置上边框*/
+.ad .shortcut li::before{
+    content: '';
+    position: absolute;
+    width: 64px;
+    height: 1px;
+    background-color: #665e57;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: 0 auto;
+}
+
+/* 设置左边框*/
+.ad .shortcut li::after{
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 70px;
+    background-color: #665e57;
+    left: 0;
+    top: 0;
+    /* 垂直居中*/
+    bottom: 0;
+    margin: auto 0;
+}
+
+/* 设置左侧快捷方式中的超链接*/
+.ad .shortcut a{
+    display: block;
+    color: #cfccca;
+    height: 84px;
+    width: 76px;
+    text-align: center;
+    font-size:12px;
+    /* 外边距折叠问题，通过开启bfc解决*/
+    overflow: hidden;
+}
+
+/* 设置鼠标移入时效果*/
+.ad .shortcut a:hover{
+    color: #fff;
+}
+
+/* 设置图标字体*/
+.ad .shortcut i{
+    /* 设置成块元素后独占一行*/
+    display: block;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+/* 设置三张广告图*/
+.ad .imgs li{
+    width: 316px;
+    margin-right: 15px;
+}
+
+/* 将最后一张图的右边距去掉*/
+.ad .imgs li:last-child{
+    margin: 0;
+}
+
+/* 设置每张图*/
+.ad .imgs img{
+    width: 100%;
+    vertical-align: top;
+}

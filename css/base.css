@@ -1,0 +1,29 @@
+/*公共样式*/
+.clearfix::before,
+.clearfix::after{
+    content: '';
+    display: table;
+    clear: both;
+}
+
+/* 去掉所有a的下划线*/
+a{
+    text-decoration: none;
+    color: #333;
+}
+
+body{
+    height: 1000px;
+    font:14px/1.5 "Helvetica Neue", "Microsoft Sans Serif";
+    color: #333;
+    /* 限制body的最小宽度 */
+    min-width: 1226px;
+}
+
+/*设置一个类，用来表示中间容器的宽度*/
+.w{
+    /* 固定容器的宽度 */
+    width: 1226px;
+    /* 设置容器居中*/
+    margin: 0 auto;
+}

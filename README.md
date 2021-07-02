@@ -1,2 +1,2 @@
 # HTML-CSS
-Exercise on reproducing Xiaomi home page
+Reproduce Xiaomi home page
